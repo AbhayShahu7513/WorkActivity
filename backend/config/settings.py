@@ -6,11 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-your-secret-key-here'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    'workactivity-api.onrender.com',
-]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -88,19 +86,41 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+# =========================
+# STATIC FILES
+# =========================
+
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Uncomment only if you have your own static folder
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+
+# =========================
+# MEDIA FILES
+# =========================
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS Configuration
+# =========================
+# CORS
+# =========================
+
 CORS_ALLOWED_ORIGINS = [
     "https://workactivity.netlify.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
+# =========================
+# DRF
+# =========================
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -109,6 +129,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
+
+# =========================
+# JWT
+# =========================
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
